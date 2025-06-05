@@ -9,7 +9,7 @@ function gurobi_solver(data::Instance, opt_tol::Float64=10^(-5), time_limit::Int
 
     @variable(model, X[1:m, 1:n])
 
-    @objective(model, Max, tr(data.C * X'))
+    @objective(model, Min, tr(data.C * X'))
 
     @constraint(model, diag(data.C * X') .>= 0.75 * data.Q, base_name = "Minimum_production")
     @constraint(model, diag(data.C * X') .<= data.Q, base_name = "Maximum_production")
