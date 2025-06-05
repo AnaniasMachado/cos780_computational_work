@@ -3,6 +3,7 @@ using LinearAlgebra
 
 include("types.jl")
 include("solver.jl")
+include("util.jl")
 
 Q = [180, 200, 140, 80, 180]
 D = [89, 95, 121, 101, 116, 181]
@@ -18,5 +19,8 @@ opt_tol = 10^(-5)
 time_limit = 7200
 
 X = gurobi_solver(data, opt_tol, time_limit)
+# X = viability_solver(data, opt_tol, time_limit)
 
 println("Objetive value: $(tr(C * X'))")
+
+println("Matrix X: $(X)")
